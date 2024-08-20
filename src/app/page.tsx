@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer";
-import Landing from "@/components/Landing";
-import { Navbar } from "@/components/Navbar";
+import Footer from "@/app/components/Footer";
+import Landing from "@/app/components/Landing";
+import { Navbar } from "@/app/components/Navbar";
 export default function Home() {
   return (
     <div>

@@ -1,13 +1,14 @@
+"use client"
 import Image from 'next/image';
 import React from 'react';
-import bitcoin from '../../public/assets/binance.png'
-import dogecoin from '../../public/assets/dogecoin.png'
-import Group3 from '../../public/assets/Group (3).png'
-import Group4 from '../../public/assets/Group.png'
+import bitcoin from '../../../public/assets/binance.png'
+import dogecoin from '../../../public/assets/dogecoin.png'
+import Group3 from '../../../public/assets/Group (3).png'
+import Group4 from '../../../public/assets/Group.png'
 import { FaGreaterThan } from "react-icons/fa";
-
-import { RiArrowRightCircleFill } from 'react-icons/ri';
+import { useRouter } from 'next/navigation';
 const Landing = () => {
+    const router = useRouter();
     return (
         <div className='w-[90%] mx-auto'>
             <div className="flex px-5 py-24 md:flex-row flex-col items-center">
@@ -22,7 +23,7 @@ const Landing = () => {
                     </p>
 
                     <div className="flex justify-center">
-                        <button className="inline-flex text-black bg-[#DEEA34] border-0 py-2 px-6 focus:outline-none rounded text-lg">
+                        <button onClick={() => router.push('/dashboard')} className="inline-flex text-black bg-[#DEEA34] border-0 py-2 px-6 focus:outline-none rounded text-lg">
                             Tally Chart
                         </button>
                         <button className="ml-4 inline-flex bg-gray-100 border-0 py-2 px-6 focus:outline-none text-black rounded text-lg">
