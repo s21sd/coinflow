@@ -67,7 +67,7 @@ export function SidebarDemo() {
 
             )}
         >
-            <Sidebar open={open} setOpen={setOpen} animate={false}>
+            <Sidebar open={open} setOpen={setOpen} animate={true}>
                 <SidebarBody className="justify-between gap-10">
                     <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                         <>
@@ -155,7 +155,7 @@ const Dashboard = () => {
                             </svg>
                         </div>
                         <input
-                            type="text"
+                            type="text" placeholder="Search "
                             className="outline-none text-[20px] bg-transparent w-full text-white font-normal px-4"
                         />
                     </div>
