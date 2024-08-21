@@ -24,7 +24,7 @@ const Landing = () => {
 
                     <div className="flex justify-center">
                         <button onClick={() => router.push('/dashboard')} className="inline-flex text-black bg-[#DEEA34] border-0 py-2 px-6 focus:outline-none rounded text-lg">
-                            Tally Chart
+                            Dashboard
                         </button>
                         <button className="ml-4 inline-flex bg-gray-100 border-0 py-2 px-6 focus:outline-none text-black rounded text-lg">
                             Get the App

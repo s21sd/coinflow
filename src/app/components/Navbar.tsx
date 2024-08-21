@@ -9,8 +9,8 @@ export const Navbar = () => {
                     </h1>
                     <div className="flex flex-wrap items-center text-black font-medium justify-between w-[30%]">
                         <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">Price</a>
-                        <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">Market</a>
-                        <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">Learn</a>
+                        <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">Compare</a>
+                        <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">WatchList</a>
                         <a className="mr-5 hover:text-[#1F0E50] cursor-pointer">About Us</a>
                     </div>
                     <div className="flex justify-between gap-3">
