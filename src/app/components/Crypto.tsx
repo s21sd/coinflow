@@ -5,6 +5,7 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import Card from "@/utils/Card"
+import List from "@/utils/List"
 
 export function Crypto() {
     return (
@@ -29,8 +30,13 @@ export function Crypto() {
                 </div>
             </TabsContent>
             <TabsContent value="password">
-
-                <h1>Grid View</h1>
+                <div className="flex justify-between items-center flex-wrap gap-5">
+                    <List />
+                    <List />
+                    <List />
+                    <List />
+                    <List />
+                </div>
             </TabsContent>
         </Tabs>
     )
