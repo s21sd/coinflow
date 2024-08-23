@@ -14,8 +14,6 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import user from '../../../public/assets/user.png'
 import { useRouter } from "next/navigation";
 import { GoReport } from "react-icons/go";
-import { FaGreaterThan, FaLessThan } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { Crypto } from "./Crypto";
 
 export function SidebarDemo() {
@@ -136,8 +134,8 @@ const Dashboard = () => {
             <div className="flex justify-between mt-10 w-[90%] mx-auto">
                 <h1 className="text-3xl font-bold">Assets</h1>
                 <div className="flex justify-center items-center gap-2">
-
-                    <div
+                {/* coinflowapikey123456@ */}
+                    <div 
                         className="p-4 overflow-hidden w-[50px] h-[50px] hover:w-[240px] bg-[#b9beca] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center hover:duration-300 duration-300"
                     >
                         <div className="flex items-center justify-center fill-white">

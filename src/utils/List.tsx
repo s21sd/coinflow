@@ -5,7 +5,7 @@ import { GiProgression } from "react-icons/gi";
 import { IoMdHeartEmpty } from "react-icons/io";
 const List = () => {
     return (
-        <div className='bg-muted w-[100%]  rounded-md p-4 mx-auto'>
+        <div className='bg-muted w-[100%] rounded-md p-4 mx-auto mt-3'>
             <div className='flex justify-between items-center'>
                 <div className='flex justify-between items-center '>
                     <div className='flex justify-center items-center gap-2'>
