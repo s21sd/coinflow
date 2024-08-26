@@ -1,43 +1,52 @@
-import Image from 'next/image'
-import React from 'react'
-import logo from '../../public/assets/Group.png'
-import { GiProgression } from "react-icons/gi";
-
-import { IoMdHeartEmpty } from "react-icons/io";
+import Image from 'next/image';
+import React from 'react';
+import { GiProgression } from 'react-icons/gi';
+import { IoMdHeartEmpty } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
-const Card = () => {
+import { FaArrowTrendDown } from "react-icons/fa6";
+
+const Card = ({ key, coin }: { key: number, coin: any }) => {
     const router = useRouter();
+    const priceChangePercentage = coin.price_change_percentage_24h;
+
     return (
         <div onClick={() => router.push('/details')} className='bg-muted cursor-pointer w-[300px] h-[220px] rounded-md p-4'>
             <div>
-                <div className='flex justify-between items-center '>
-                    <div className='flex justify-center items-center gap-2'>
-                        <Image src={logo} alt='logo' width={40} height={40} />
+                <div className='flex justify-between items-center'>
+                    <div className='flex items-center gap-2'>
+                        <Image src={coin.image} alt={`${coin.name} logo`} width={40} height={40} />
                         <div>
-                            <h1 className='font-bold'>BTC</h1>
-                            <h1 className='text-gray-500'>Bitcoin</h1>
+                            <h1 className='font-bold uppercase'>{coin.symbol}</h1>
+                            <h1 className='text-gray-500'>{coin.name}</h1>
                         </div>
                     </div>
-                    <IoMdHeartEmpty className=' cursor-pointer text-green-500' size={30} />
+                    <IoMdHeartEmpty className='cursor-pointer text-green-500' size={30} />
                 </div>
 
-                <div className='flex justify-start items-center gap-3 mt-2'>
-                    <div className='border rounded-full border-3 border-green-500 p-2'>
-                        <h1 className='text-green-500'>7.65 %</h1>
+                <div className='flex items-center gap-3 mt-2'>
+                    <div className={`border rounded-full p-2 ${priceChangePercentage > 0 ? 'border-green-500' : 'border-red-500'}`}>
+                        <h1 className={`${priceChangePercentage > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                            {priceChangePercentage.toFixed(2)}%
+                        </h1>
                     </div>
-                    <GiProgression className=' cursor-pointer text-green-500' size={25} />
+                    {
+                        priceChangePercentage > 0 ? <GiProgression className='text-green-500' size={25} /> : <FaArrowTrendDown className='text-red-500' size={25} />
+                    }
+
                 </div>
 
                 <div className='mt-3'>
-                    <h1 className='text-green-500 font-bold'>$20,447</h1>
+                    <h1 className={`${priceChangePercentage > 0 ? 'text-green-500' : 'text-red-500'} font-bold`}>
+                        ${coin.current_price.toLocaleString()}
+                    </h1>
                 </div>
                 <div className='text-gray-500'>
-                    <h1>Total Volume: 56,584,112,589</h1>
-                    <h1>Market Cap: 56,584,112,589</h1>
+                    <h1>Total Volume: {coin.total_volume.toLocaleString()}</h1>
+                    <h1>Market Cap: {coin.market_cap.toLocaleString()}</h1>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Card
+export default Card;

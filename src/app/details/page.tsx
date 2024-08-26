@@ -84,7 +84,7 @@ const Page = () => {
             <h1 className='font-bold text-black text-2xl'>Bitcoin</h1>
 
             <div className='mt-10'>
-                <List />
+                {/* <List /> */}
             </div>
             <div className='mt-4 mb-8'>
                 <label htmlFor="timeRange" className='mr-4 font-medium text-lg'>
