@@ -12,7 +12,7 @@ const List = ({ coin }: { coin: any }) => {
         <div className='bg-muted w-full rounded-md p-4 mx-auto mt-3'>
             <div className='flex justify-between items-center'>
                 <div className='flex items-center gap-2'>
-                    <Image src={logo} alt='logo' width={40} height={40} />
+                    <Image src={coin.image} alt={`${coin.name} logo`} width={40} height={40} />
                     <div>
                         <h1 className='font-bold uppercase'>{coin.symbol}</h1>
                         <h1 className='text-gray-500'>{coin.name}</h1>
