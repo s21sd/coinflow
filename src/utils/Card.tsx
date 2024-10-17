@@ -5,7 +5,7 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
 import { FaArrowTrendDown } from "react-icons/fa6";
 
-const Card = ({ key, coin }: { key: number, coin: any }) => {
+const Card = ({ coin }: { coin: any }) => {
     const router = useRouter();
     const priceChangePercentage = coin.price_change_percentage_24h;
 

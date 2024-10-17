@@ -4,6 +4,7 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
+import ReduxProvider from "./redux/provider";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -25,7 +26,13 @@ export default function RootLayout({
       <body className={cn(
         "min-h-screen bg-[#d4baff] font-sans antialiased",
         fontSans.variable
-      )}><Toaster />{children}</body>
+      )}>
+        <ReduxProvider>
+
+          <Toaster />
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

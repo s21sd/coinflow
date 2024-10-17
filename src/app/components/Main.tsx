@@ -15,10 +15,28 @@ import user from '../../../public/assets/user.png'
 import { useRouter } from "next/navigation";
 import { GoReport } from "react-icons/go";
 import { Crypto } from "./Crypto";
-
+import { IoExit } from "react-icons/io5";
+import { signOut } from "firebase/auth";
+import { auth } from "@/utils/Firebase";
+import { toast } from "sonner";
+import { logOut } from "../redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useAppSelector } from "../redux/store";
 export function SidebarDemo() {
     const router = useRouter();
+    const dispatch = useDispatch<AppDispatch>()
+    const authenticated = useAppSelector((state) => state.authReducer);
+    console.log("auth", authenticated)
 
+    const logoutWithGoogle = () => {
+        signOut(auth).then(() => {
+            toast.success("Sign-out successful")
+            dispatch(logOut());
+            router.push('/')
+        }).catch((error) => {
+            toast.error(error);
+        });
+    }
     const links = [
         {
             label: "Home",
@@ -84,8 +102,8 @@ export function SidebarDemo() {
                             link={{
 
                                 label: "Sunny",
-                                
-                                href: "#",
+
+                                href: "/profile",
                                 icon: (
                                     <Image
                                         src={user}
@@ -93,13 +111,15 @@ export function SidebarDemo() {
                                         width={50}
                                         height={50}
                                         alt="Avatar"
-                                        onClick={() => router.push('/profile')}
-
 
                                     />
                                 ),
                             }}
                         />
+                        <button onClick={logoutWithGoogle} className="inline-flex items-center  text-base mt-4 md:mt-0">
+                            <IoExit size={40} />
+                        </button>
+
                     </div>
                 </SidebarBody>
             </Sidebar>
