@@ -19,7 +19,7 @@ export const Navbar = () => {
         signInWithPopup(auth, provider).then((res) => {
             const { uid, photoURL, displayName, email } = res.user;
             dispatch(logIn({
-                
+
                 isAuth: true,
                 user: {
                     uid,
@@ -28,7 +28,11 @@ export const Navbar = () => {
                     email
                 }
             }));
+           
+            localStorage.setItem('photoURL', photoURL!);
+            localStorage.setItem('displayName', displayName!);
             router.push('/dashboard');
+
         }).catch((error) => {
             toast.error(`Sign-in failed: ${error.message}`);
         });

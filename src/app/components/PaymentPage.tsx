@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import {
@@ -12,7 +11,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { LockIcon, CreditCardIcon } from 'lucide-react'
-
+import { toast } from 'sonner'
+// 7774 1414 1414 1474 card number demo 
 const CheckoutForm = () => {
   const stripe = useStripe()
   const elements = useElements()
@@ -37,8 +37,12 @@ const CheckoutForm = () => {
     }
 
     try {
-      const res = await fetch('/create-intent', {
+      const res = await fetch('/api', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount: 5000 }),
       })
 
       const { client_secret: clientSecret } = await res.json()
@@ -50,6 +54,7 @@ const CheckoutForm = () => {
           return_url: 'https://example.com/order/123/complete',
         },
       })
+      toast.success("Payment Succesfully added to your account")
 
       if (error) {
         setErrorMessage(error.message ?? 'An error occurred')
@@ -64,9 +69,9 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <PaymentElement />
-      <Button 
-        type="submit" 
-        disabled={!stripe || !elements || isProcessing} 
+      <Button
+        type="submit"
+        disabled={!stripe || !elements || isProcessing}
         className="w-full"
       >
         {isProcessing ? 'Processing...' : 'Pay Now'}
@@ -80,7 +85,7 @@ const CheckoutForm = () => {
   )
 }
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh')
+const stripePromise = loadStripe('pk_test_51QBNF4AlIDCy873ZJnUEheWZZtMGZ8FZGVNQEochPiQqcUfmqazoWiQt1VVa3tnqTc7teOf8m94YeP3Cq9BomczW00QphgsX6R')
 
 const options = {
   mode: 'payment',

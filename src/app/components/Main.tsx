@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     IconArrowLeft,
     IconBrandTabler,
@@ -24,9 +24,15 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../redux/store";
 export function SidebarDemo() {
     const router = useRouter();
+    const [name, setName] = useState<string | null>("User");
+    const [image, setImage] = useState<string | null>("");
     const dispatch = useDispatch<AppDispatch>()
-    const authenticated = useAppSelector((state) => state.authReducer);
-    console.log("auth", authenticated)
+    // const authenticated = useAppSelector((state) => state.authReducer);
+    // console.log("auth", authenticated.user)
+    useEffect(() => {
+        setName(localStorage.getItem("displayName"));
+        setImage(localStorage.getItem("photoURL"))
+    }, [])
 
     const logoutWithGoogle = () => {
         signOut(auth).then(() => {
@@ -101,12 +107,12 @@ export function SidebarDemo() {
 
                             link={{
 
-                                label: "Sunny",
+                                label: name!,
 
                                 href: "/profile",
                                 icon: (
                                     <Image
-                                        src={user}
+                                        src={image ? image : user}
                                         className="h-7 w-7 flex-shrink-0 rounded-full"
                                         width={50}
                                         height={50}

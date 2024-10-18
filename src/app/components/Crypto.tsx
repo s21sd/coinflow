@@ -26,10 +26,10 @@ export function Crypto() {
         }
     };
 
-    useEffect(() => {
-        fetchCoins();
-    }, []);
-    console.log(coins);
+    // useEffect(() => {
+    //     fetchCoins();
+    // }, []);
+   
 
     return (
         <Tabs defaultValue="account" className="w-[90%] mx-auto">
