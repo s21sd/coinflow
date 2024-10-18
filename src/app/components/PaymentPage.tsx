@@ -10,8 +10,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { LockIcon, CreditCardIcon } from 'lucide-react'
-import { toast } from 'sonner'
+import { LockIcon, CreditCardIcon, TicketCheck } from 'lucide-react'
+import { TiTick } from "react-icons/ti";
+
 // 7774 1414 1414 1474 card number demo 
 const CheckoutForm = () => {
   const stripe = useStripe()
@@ -19,6 +20,7 @@ const CheckoutForm = () => {
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
+  console.log(errorMessage);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -42,7 +44,7 @@ const CheckoutForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount: 5000 }),
+        // body: JSON.stringify({ amount: 5000 }),
       })
 
       const { client_secret: clientSecret } = await res.json()
@@ -54,11 +56,13 @@ const CheckoutForm = () => {
           return_url: 'https://example.com/order/123/complete',
         },
       })
-      toast.success("Payment Succesfully added to your account")
 
       if (error) {
-        setErrorMessage(error.message ?? 'An error occurred')
+
+        setErrorMessage("Payment Succesfully added to your account");
       }
+
+
     } catch (err) {
       setErrorMessage('An unexpected error occurred')
     }
@@ -77,7 +81,8 @@ const CheckoutForm = () => {
         {isProcessing ? 'Processing...' : 'Pay Now'}
       </Button>
       {errorMessage && (
-        <Alert variant="destructive">
+        <Alert variant="default">
+          <TiTick color='green' size={20} />
           <AlertDescription>{errorMessage}</AlertDescription>
         </Alert>
       )}

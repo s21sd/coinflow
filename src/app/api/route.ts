@@ -32,11 +32,11 @@ const stripe = new Stripe("sk_test_51QBNF4AlIDCy873ZvSLRQ5LRvBqV7o3NwavFnFMl8zAj
 });
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json();
-        const amount = body.amount || 1099;
+        // const body = await req.json();
+        // const amount = body.amount || 1099;
 
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: amount,
+            amount: 4000,
             currency: 'usd',
         });
 
