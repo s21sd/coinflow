@@ -59,7 +59,8 @@ const CheckoutForm = () => {
 
       if (error) {
 
-        setErrorMessage("Payment Succesfully added to your account");
+        console.log(error)
+        setErrorMessage(error.message);
       }
 
 

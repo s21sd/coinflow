@@ -64,7 +64,7 @@ export const Navbar = () => {
                     <div className="flex justify-between gap-3">
                         {authenticated.isAuth && authenticated.user ? (
                             <div className='flex justify-between items-center gap-3'>
-                                <Image className='rounded-full' src={authenticated.user.photoURL || '/default-avatar.png'} width={40} height={40} alt='profile' />
+                                <Image className='rounded-full' src={authenticated.user.photoURL || ''} width={40} height={40} alt='profile' />
                                 <button onClick={logoutWithGoogle} className="inline-flex items-center text-base mt-4 md:mt-0">
                                     <IoExit size={46} />
                                 </button>
