@@ -1,18 +1,29 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { CopyIcon, ExternalLinkIcon } from 'lucide-react'
 import { toast } from "sonner"
-import PaymentPage from '../components/PaymentPage'
 import { ImCross } from "react-icons/im";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from '@stripe/stripe-js'
+import { PaymentPage } from '../components/PaymentPage'
+const stripePromise = loadStripe("pk_test_51QBNF4AlIDCy873ZJnUEheWZZtMGZ8FZGVNQEochPiQqcUfmqazoWiQt1VVa3tnqTc7teOf8m94YeP3Cq9BomczW00QphgsX6R");
 export default function CryptoProfilePage() {
+
+  const [image, setImage] = useState<string | null>("");
+  const [name, setName] = useState<string | null>("");
+  useEffect(() => {
+    setName(localStorage.getItem("displayName"));
+    setImage(localStorage.getItem("photoURL"))
+  }, [])
+  console.log("name", name);
   const [user, setUser] = useState({
-    name: 'Crypto Enthusiast',
-    email: 'crypto@example.com',
-    walletAddress: '0x1234...5678',
+    name: "Sunny Srivastava",
+    email: 'sunnysrivastava258@gmail.com',
+    walletAddress: '0x1234...5678',   // After login with google id
     balance: '1.5 ETH',
     transactions: [
       { id: 1, type: 'Buy', amount: '0.5 ETH', date: '2023-05-15' },
@@ -20,6 +31,8 @@ export default function CryptoProfilePage() {
       { id: 3, type: 'Buy', amount: '100 USDT', date: '2023-05-05' },
     ]
   })
+
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,8 +53,8 @@ export default function CryptoProfilePage() {
           <CardHeader>
             <div className="flex items-center space-x-4">
               <Avatar className="w-20 h-20">
-                <AvatarImage src="/placeholder.svg?height=80&width=80" alt={user.name} />
-                <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                <AvatarImage src={image!} alt={user?.name!} />
+                <AvatarFallback>{user?.name?.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
               <div>
                 <CardTitle className="text-2xl">{user.name}</CardTitle>
@@ -94,14 +107,16 @@ export default function CryptoProfilePage() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="relative bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
-            <button 
+            <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 m-2"
               onClick={closeModal}
             >
               <ImCross />
 
             </button>
-            <PaymentPage />
+            {/* <Elements stripe={stripePromise}> */}
+              <PaymentPage />
+            {/* </Elements> */}
           </div>
         </div>
       )}
