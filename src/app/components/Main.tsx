@@ -162,6 +162,7 @@ export const LogoIcon = () => {
     );
 };
 const Dashboard = () => {
+    const [searchInput, setSearchInput] = useState();
     return (
         <div className=" w-screen bg-[#d4baff]">
             <div className="flex justify-between mt-10 w-[90%] mx-auto">
@@ -186,6 +187,7 @@ const Dashboard = () => {
                             </svg>
                         </div>
                         <input
+                            onChange={(e: any) => setSearchInput(e.target.value)}
                             type="text" placeholder="Search "
                             className="outline-none text-[20px] bg-transparent w-full text-white font-normal px-4"
                         />
