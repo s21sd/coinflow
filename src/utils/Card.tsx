@@ -8,9 +8,12 @@ import { FaArrowTrendDown } from "react-icons/fa6";
 const Card = ({ coin }: { coin: any }) => {
     const router = useRouter();
     const priceChangePercentage = coin.price_change_percentage_24h;
+    const handleClick = (coinname: string) => {
+        router.push(`/details/?coinname=${coinname}`)
+    }
 
     return (
-        <div onClick={() => router.push('/details')} className='bg-muted cursor-pointer w-[300px] h-[220px] rounded-md p-4'>
+        <div onClick={() => handleClick(coin.name)} className='bg-muted cursor-pointer w-[300px] h-[220px] rounded-md p-4' >
             <div>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-2'>
@@ -45,7 +48,7 @@ const Card = ({ coin }: { coin: any }) => {
                     <h1>Market Cap: {coin.market_cap.toLocaleString()}</h1>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

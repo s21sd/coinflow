@@ -10,6 +10,7 @@ import { ImCross } from "react-icons/im";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js'
 import { PaymentPage } from '../components/PaymentPage'
+import { checkout } from '@/checkout'
 const stripePromise = loadStripe("pk_test_51QBNF4AlIDCy873ZJnUEheWZZtMGZ8FZGVNQEochPiQqcUfmqazoWiQt1VVa3tnqTc7teOf8m94YeP3Cq9BomczW00QphgsX6R");
 export default function CryptoProfilePage() {
 
@@ -47,7 +48,6 @@ export default function CryptoProfilePage() {
 
   return (
     <div className="relative">
-      {/* Blur the background when modal is open */}
       <div className={`container mx-auto p-4 transition ${isModalOpen ? 'filter blur-md' : ''}`}>
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
@@ -77,7 +77,13 @@ export default function CryptoProfilePage() {
                 <h3 className="text-lg font-semibold mb-2">Balance</h3>
                 <p className="text-2xl font-bold">{user.balance}</p>
               </div>
-              <Button onClick={() => setIsModalOpen(true)}>Buy Now</Button>
+              <Button onClick={() => {
+                checkout({
+                  lineItems: [{
+                    price: "price_1QKfYhAlIDCy873ZBd1h0XrA", quantity: 1
+                  }]
+                })
+              }} >Buy Now</Button>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Recent Transactions</h3>
@@ -115,7 +121,7 @@ export default function CryptoProfilePage() {
 
             </button>
             {/* <Elements stripe={stripePromise}> */}
-              <PaymentPage />
+            <PaymentPage />
             {/* </Elements> */}
           </div>
         </div>

@@ -26,9 +26,9 @@ export function Crypto() {
         }
     };
 
-    // useEffect(() => {
-    //     fetchCoins();
-    // }, []);
+    useEffect(() => {
+        fetchCoins();
+    }, []);
    
 
     return (
