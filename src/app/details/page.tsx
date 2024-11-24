@@ -103,7 +103,7 @@ const Page = () => {
 
     return (
         <div className="mt-10 p-4">
-            <h1 className="font-bold text-black text-2xl">Cryptocurrency Chart</h1>
+            <h1 className="font-bold text-black text-2xl">Cryptocurrency Chart of <span className="font-bold bg-gray-700 p-3 rounded-full text-xl text-white ">{coinname?.toLocaleUpperCase()}</span> </h1>
 
             <div className="mt-4 mb-8">
                 <label htmlFor="timeRange" className="mr-4 font-medium text-lg">

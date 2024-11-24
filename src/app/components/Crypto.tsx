@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
     Tabs,
@@ -10,7 +10,7 @@ import {
 import Card from "@/utils/Card";
 import List from "@/utils/List";
 
-export function Crypto() {
+export function Crypto({ searchInput }: { searchInput: string }) {
     const [coins, setCoins] = useState([]);
 
     const fetchCoins = async () => {
@@ -29,7 +29,16 @@ export function Crypto() {
     useEffect(() => {
         fetchCoins();
     }, []);
-   
+
+    const filertedCoins = useMemo(() => {
+        if (!searchInput) {
+            return coins;
+        }
+        return coins.filter(coin =>
+            coin.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
+    }, [searchInput, coins])
+
 
     return (
         <Tabs defaultValue="account" className="w-[90%] mx-auto">
@@ -41,7 +50,7 @@ export function Crypto() {
                 <ScrollArea className='flex h-screen mb-10'>
 
                     <div className="flex justify-between items-center flex-wrap gap-10 mt-10 ">
-                        {coins.map((coin, index) => (
+                        {filertedCoins.map((coin, index) => (
                             <Card key={index} coin={coin} />
                         ))}
                     </div>
@@ -49,7 +58,7 @@ export function Crypto() {
             </TabsContent>
             <TabsContent value="password">
                 <ScrollArea className="flex justify-between items-center h-screen flex-wrap gap-5">
-                    {coins.map((coin, index) => (
+                    {filertedCoins.map((coin, index) => (
                         <List key={index} coin={coin} />
                     ))}
                 </ScrollArea>

@@ -52,7 +52,7 @@ export function SidebarDemo() {
             ),
         },
         {
-            label: "Assets",
+            label: "About",
             href: "#",
             icon: (
                 <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -60,7 +60,7 @@ export function SidebarDemo() {
         },
 
         {
-            label: "Live Trade",
+            label: "Exchange",
             href: "#",
             icon: (
                 <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -162,7 +162,7 @@ export const LogoIcon = () => {
     );
 };
 const Dashboard = () => {
-    const [searchInput, setSearchInput] = useState();
+    const [searchInput, setSearchInput] = useState("");
     return (
         <div className=" w-screen bg-[#d4baff]">
             <div className="flex justify-between mt-10 w-[90%] mx-auto">
@@ -191,12 +191,13 @@ const Dashboard = () => {
                             type="text" placeholder="Search "
                             className="outline-none text-[20px] bg-transparent w-full text-white font-normal px-4"
                         />
+
                     </div>
 
                 </div>
             </div>
             <div className="flex justify-between mt-10 w-[90%] mx-auto">
-                <Crypto />
+                <Crypto searchInput={searchInput} />
             </div>
 
         </div>
