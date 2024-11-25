@@ -10,8 +10,37 @@ import {
 import Card from "@/utils/Card";
 import List from "@/utils/List";
 
+interface Coin {
+    id: string;
+    name: string;
+    symbol: string;
+    current_price: number;
+    image: string;
+    market_cap: number;
+    market_cap_rank: number;
+    fully_diluted_valuation?: number | null;
+    total_volume: number;
+    high_24h: number;
+    low_24h: number;
+    price_change_24h: number;
+    price_change_percentage_24h: number;
+    market_cap_change_24h: number;
+    market_cap_change_percentage_24h: number;
+    circulating_supply: number;
+    total_supply: number;
+    max_supply?: number | null;
+    ath: number;
+    ath_change_percentage: number;
+    ath_date: string;
+    atl: number;
+    atl_change_percentage: number;
+    atl_date: string;
+    roi?: null;
+    last_updated: string;
+}
+
 export function Crypto({ searchInput }: { searchInput: string }) {
-    const [coins, setCoins] = useState([]);
+    const [coins, setCoins] = useState<Coin[]>([]);
 
     const fetchCoins = async () => {
         try {
@@ -20,6 +49,7 @@ export function Crypto({ searchInput }: { searchInput: string }) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
+            console.log(data);
             setCoins(data);
         } catch (error) {
             console.error('Fetch error:', error);
