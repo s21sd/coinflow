@@ -70,6 +70,7 @@ export const Navbar = () => {
                                 </button>
                             </div>
                         ) : (
+                            
                             <button onClick={signInWithGoogle} className="inline-flex cursor-pointer text-white items-center bg-[#574A7B] border-0 py-1 px-3 focus:outline-none rounded-md mt-4 md:mt-0">
                                 Sign-In
                             </button>
